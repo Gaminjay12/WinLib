@@ -1,0 +1,17 @@
+inital window:
+    function: init_window()
+
+content:
+    id: content
+    
+title:
+    id: title
+
+hiding windows:
+    function: hide_window(window)
+
+showing windows:
+    function: show_window(window)
+
+removing windows:
+    function: remove_window(window)
