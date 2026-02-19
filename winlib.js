@@ -1,43 +1,61 @@
 export function win_init(title = "No title given") {
-    const window = document.createElement("div");
-    window.setAttribute("id", "window");
-    window.style.borderRadius = "5px";
+    const win = document.createElement("div");
+    win.className = 'window';
+
+    //css
+    win.style.borderRadius = "5px";
+    win.style.position = "relative";
+    win.style.width = "500px";
+    win.style.height = "500px";
+    win.style.border = "1px solid black";
 
     const titleBar = document.createElement("div");
-    titleBar.setAttribute("id", "title-bar");
-    titleBar.style.position = "absolute";
-    titleBar.style.top = "0";
-    titleBar.style.left = "0";
+    titleBar.className = 'title-bar';
+
+    // css
     titleBar.style.width = "100%";
     titleBar.style.height = "20px";
     titleBar.style.backgroundColor = "#333";
     titleBar.style.color = "#fff";
-    titleBar.style.padding = "2px";
     titleBar.style.userSelect = "none";
 
     const titleSpan = document.createElement("span");
-    titleSpan.setAttribute("id", "title");
+    titleSpan.className = "title";
     titleSpan.innerText = title;
     titleBar.appendChild(titleSpan);
-    
-    window.appendChild(titleBar);
-    return window;
+
+    const content = document.createElement("div");
+    content.className = 'content';
+
+    win.appendChild(titleBar);
+    win.appendChild(content);
+
+    return win;
 }
 
+// changes the window title
 export function win_set_title(windowElement, title) {
-    const titleSpan = windowElement.querySelector("#title");
+    const titleSpan = windowElement.querySelector(".title");
     if (titleSpan) {
         titleSpan.innerText = title;
     }
 }
 
+// displays the window
 export function win_display(containerElement, windowElement) {
     containerElement.appendChild(windowElement);
+    return windowElement;
 }
 export function win_content(windowElement, htmlContent) {
-    const content = document.createElement("div");
-    content.setAttribute("id", "content");
+    let content = windowElement.querySelector(".content");
+    if (!content) {
+        content = document.createElement("div");
+        content.className = 'content';
+        windowElement.appendChild(content);
+    }
     content.innerHTML = htmlContent;
-    windowElement.appendChild(content);
     return content;
-};
+}
+export function win_remove(windowElement) {
+    windowElement.remove();
+}
