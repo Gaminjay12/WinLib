@@ -2,9 +2,11 @@ function winlib_debug() {
 	const url = new URL(window.location.href);
 	let flag = url.searchParams.get("winlib_debug_flag");
 	if (flag === "true") {
-		const window = win_init("Winlib debug")
-		win_content(window,
-			"Version: dev-0.4-4")
+		const window_debug = win_init("Winlib debug")
+		win_content(window_debug,
+			"<p>Version: dev-0.4-4</p>")
+		win_display(document.body, window_debug)
+
 	}
 }
 winlib_debug()
